@@ -1,8 +1,8 @@
-FROM owasp/modsecurity:3
+FROM owasp/modsecurity:3.0.4
 
 LABEL maintainer="Chaim Sanders <chaim.sanders@gmail.com>"
 
-ARG RELEASE=%%RELEASE%%
+ARG RELEASE=v3.3.0
 
 ENV PARANOIA=1 \
     ANOMALY_INBOUND=5 \
@@ -27,6 +27,7 @@ COPY src/opt/modsecurity/activate-rules.sh /opt/modsecurity/
 COPY src/etc/modsecurity.d/*.conf /etc/modsecurity.d/
 COPY nginx/docker-entrypoint.sh /
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY nginx/default.conf /etc/nginx/conf.d/
 
 # Change default shell to bash
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]

@@ -9,6 +9,8 @@ do
     envsubst "$ENV_VARIABLES" <$FILE | sponge $FILE
 done
 
+
+
 source /opt/modsecurity/activate-rules.sh
 
 exec "$@"
