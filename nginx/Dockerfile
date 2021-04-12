@@ -38,12 +38,14 @@ RUN apt-get update \
       ca-certificates \
       curl \
       iproute2 \
- && mkdir /opt/owasp-crs \
- && curl -SL https://github.com/coreruleset/coreruleset/archive/${RELEASE}.tar.gz \
- | tar -zxf - --strip-components=1 -C /opt/owasp-crs \
- && mv -v /opt/owasp-crs/crs-setup.conf.example /opt/owasp-crs/crs-setup.conf \
- && ln -sv /opt/owasp-crs /etc/modsecurity.d/ \
  && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir /opt/owasp-crs
+
+COPY coreruleset-3.3.0 /opt/owasp-crs
+
+RUN mv -v /opt/owasp-crs/crs-setup.conf.example /opt/owasp-crs/crs-setup.conf 
+RUN ln -sv /opt/owasp-crs /etc/modsecurity.d/
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
