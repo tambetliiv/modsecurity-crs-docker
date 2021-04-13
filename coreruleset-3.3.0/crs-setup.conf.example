@@ -379,13 +379,13 @@ SecDefaultAction "phase:2,log,auditlog,pass"
 # Example: for WebDAV, add the following methods: CHECKOUT COPY DELETE LOCK
 #          MERGE MKACTIVITY MKCOL MOVE PROPFIND PROPPATCH PUT UNLOCK
 # Uncomment this rule to change the default.
-#SecAction \
-# "id:900200,\
-#  phase:1,\
-#  nolog,\
-#  pass,\
-#  t:none,\
-#  setvar:'tx.allowed_methods=GET HEAD POST OPTIONS'"
+SecAction \
+ "id:900200,\
+  phase:1,\
+  nolog,\
+  pass,\
+  t:none,\
+  setvar:'tx.allowed_methods=GET HEAD POST OPTIONS PATCH'"
 
 # Content-Types that a client is allowed to send in a request.
 # Default: |application/x-www-form-urlencoded| |multipart/form-data| |multipart/related|
@@ -393,13 +393,13 @@ SecDefaultAction "phase:2,log,auditlog,pass"
 # |application/cloudevents+json| |application/cloudevents-batch+json| |application/octet-stream|
 # |application/csp-report| |application/xss-auditor-report| |text/plain|
 # Uncomment this rule to change the default.
-#SecAction \
-# "id:900220,\
-#  phase:1,\
-#  nolog,\
-#  pass,\
-#  t:none,\
-#  setvar:'tx.allowed_request_content_type=|application/x-www-form-urlencoded| |multipart/form-data| |multipart/related| |text/xml| |application/xml| |application/soap+xml| |application/x-amf| |application/json| |application/cloudevents+json| |application/cloudevents-batch+json| |application/octet-stream| |application/csp-report| |application/xss-auditor-report| |text/plain|'"
+SecAction \
+ "id:900220,\
+  phase:1,\
+  nolog,\
+  pass,\
+  t:none,\
+  setvar:'tx.allowed_request_content_type=|application/x-www-form-urlencoded| |multipart/form-data| |multipart/related| |text/xml| |application/xml| |application/soap+xml| |application/x-amf| |application/json| |application/cloudevents+json| |application/cloudevents-batch+json| |application/octet-stream| |application/csp-report| |application/xss-auditor-report| |text/plain| |application/x-git-upload-pack-request| |application/x-git-receive-pack-request|'"
 
 # Allowed HTTP versions.
 # Default: HTTP/1.0 HTTP/1.1 HTTP/2 HTTP/2.0
